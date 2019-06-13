@@ -1,4 +1,4 @@
-package io.github.mhoffmann98.openarena;
+package com.github.ctirpak.openarena2;
 
 import java.util.ArrayList;
 
@@ -44,7 +44,13 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void playerInteract(PlayerInteractEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && plugin.getArenaGame().playerInArena(e.getPlayer())) { // Game isnt active and player is in the arena game
+		if (!plugin.getArenaGame().isGameActive() && plugin.getArenaGame().playerInArena(e.getPlayer())) { // Game isnt
+																											// active
+																											// and
+																											// player is
+																											// in the
+																											// arena
+																											// game
 			ItemStack notReady = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData());
 			ItemMeta notReadyMeta = notReady.getItemMeta();
 			notReadyMeta.setDisplayName("Not Ready");
@@ -94,7 +100,8 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
-		if(!plugin.getArenaGame().isGameActive() && e.getInventory().getName().equalsIgnoreCase("Select a kit") && plugin.getArenaGame().playerInArena((Player)e.getWhoClicked())) {
+		if (!plugin.getArenaGame().isGameActive() && e.getInventory().getName().equalsIgnoreCase("Select a kit")
+				&& plugin.getArenaGame().playerInArena((Player) e.getWhoClicked())) {
 			Player player = (Player) e.getWhoClicked();
 			e.setCancelled(true);
 			if (!e.getCurrentItem().hasItemMeta()) {
@@ -122,7 +129,8 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void takeDamage(EntityDamageEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && e.getEntity() instanceof Player && plugin.getArenaGame().playerInArena((Player)e.getEntity()))
+		if (!plugin.getArenaGame().isGameActive() && e.getEntity() instanceof Player
+				&& plugin.getArenaGame().playerInArena((Player) e.getEntity()))
 			e.setCancelled(true);
 	}
 

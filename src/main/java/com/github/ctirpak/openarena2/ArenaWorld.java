@@ -1,4 +1,4 @@
-package io.github.mhoffmann98.openarena;
+package com.github.ctirpak.openarena2;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,8 +12,8 @@ public final class ArenaWorld {
 	private int mapSize, playerCount;
 	private World world;
 	private Location mapSpawn;
-	
-	public String generate(int mapSize){
+
+	public String generate(int mapSize) {
 		Bukkit.broadcastMessage(ChatColor.YELLOW + "called: WorldGenerator.generateWorld()");
 		this.mapSize = mapSize;
 		this.playerCount = 0;
@@ -25,22 +25,22 @@ public final class ArenaWorld {
 
 		wc = new WorldCreator(name);
 		world = wc.createWorld();
-		world.getWorldBorder().setCenter(0,0);
+		world.getWorldBorder().setCenter(0, 0);
 		world.getWorldBorder().setSize(10);
-		
+
 		mapSpawn = new Location(world, 0, world.getHighestBlockYAt(0, 0), 0);
-		
-		Bukkit.broadcastMessage(ChatColor.GREEN + "Temporary world created as "+name);
+
+		Bukkit.broadcastMessage(ChatColor.GREEN + "Temporary world created as " + name);
 		return name;
 	}
-	
-	public boolean destroy(){
+
+	public boolean destroy() {
 		return true;
 	}
-	
+
 	public Location generateSpawn(int index) {
 		Bukkit.broadcastMessage(ChatColor.YELLOW + "called: WorldGenerator.generateSpawn()");
-		if(world==null)
+		if (world == null)
 			return null;
 
 		double angle = 360 / playerCount * (float) index + 0.5;
@@ -48,21 +48,21 @@ public final class ArenaWorld {
 		int spawnX = (int) (Math.cos(Math.toRadians(angle)) * mapSize);
 		int spawnZ = (int) (Math.sin(Math.toRadians(angle)) * mapSize);
 		int spawnY = world.getHighestBlockYAt((int) spawnX, (int) spawnZ) + 1;
-		
+
 		return new Location(world, spawnX, spawnY, spawnZ);
 	}
-	
-	public Location getMapSpawn(){
-		return mapSpawn; //pre-game spawn point
+
+	public Location getMapSpawn() {
+		return mapSpawn; // pre-game spawn point
 	}
 
 	public String getWorldName() {
 		return name;
 	}
-	
+
 	public void setPlayerNumbers(int playerCount) {
 		this.playerCount = playerCount;
-		Bukkit.broadcastMessage(ChatColor.YELLOW+"Set total player count to "+playerCount);
+		Bukkit.broadcastMessage(ChatColor.YELLOW + "Set total player count to " + playerCount);
 	}
 
 	public int getMapSize() {

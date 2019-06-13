@@ -1,5 +1,5 @@
 name: OpenArena
-main: io.github.mhoffmann98.openarena.OpenArena
+main: com.github.ctirpak.openarena2.OpenArena
 version: 0.0.1-SNAPSHOT
 
 commands:
