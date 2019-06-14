@@ -10,6 +10,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.ctirpak.openarena2.generators.ChestGenerator;
@@ -19,7 +20,8 @@ public class OpenArena extends JavaPlugin {
 	private static ArenaGame ag;
 	private ChestGenerator cg;
 	private Logger logger;
-	public static Inventory kitSelector, lobbyMenu;
+	public static Inventory kitSelector;
+	public static Inventory lobbyMenu;
 	private HashMap<String, Kit> kits;
 
 	@Override
@@ -30,12 +32,14 @@ public class OpenArena extends JavaPlugin {
 		logger = new Logger(ChatColor.YELLOW, "OpenArena > ");
 		ag = new ArenaGame(this);
 
-		this.lobbyMenu = generateLobbyMenu();
+		OpenArena.lobbyMenu = generateLobbyMenu();
+		getLogger().info("OpenArena has been enabled");
 	}
 
 	@Override
 	public void onDisable() {
 		ag.stop();
+		getLogger().info("OpenArena has been disabled");
 	}
 
 	// loads all kits that are marked as active from the config file

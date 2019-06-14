@@ -11,8 +11,8 @@ public class OACommandExecutor implements CommandExecutor {
 	private Player player;
 
 	public OACommandExecutor(OpenArena plugin) {
-		this.plugin = plugin; // Store the plugin in situations where you need
-		// it.
+		// Store the plugin in situations where you need it.
+		this.plugin = plugin;
 	}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -23,14 +23,14 @@ public class OACommandExecutor implements CommandExecutor {
 		switch (args[0]) {
 		case "join":
 			player = (Player) sender;
-			if (!plugin.getCurrentArenaGame().addPlayer(player))
+			if (!OpenArena.getCurrentArenaGame().addPlayer(player))
 				player.sendMessage(ChatColor.RED + "You have already joined the game!");
 
 			break;
 
 		case "leave":
 			player = (Player) sender;
-			if (!plugin.getCurrentArenaGame().removePlayer(player))
+			if (!OpenArena.getCurrentArenaGame().removePlayer(player))
 				player.sendMessage(ChatColor.RED + "You are not in this game!");
 
 			break;

@@ -27,7 +27,8 @@ public class ArenaGame {
 	// Creates a new temporary world and returns the name.
 	private String generateWorld() {
 		String name = "arena";
-		while (new File(plugin.getServer().getWorldContainer(), name).exists()) { // finds a name for the new world.
+		// finds a name for the new world.
+		while (new File(plugin.getServer().getWorldContainer(), name).exists()) {
 			name += "_";
 		}
 
