@@ -52,6 +52,14 @@ public class ArenaGame {
 		return -1;
 	}
 
+	public boolean playerInArena(Player p) {
+		for (ArenaPlayer player : players) {
+			if (p.getUniqueId().equals(player.getBukkitPlayer().getUniqueId()))
+				return true;
+		}
+		return false;
+	}
+
 	public ArenaPlayer getArenaPlayer(Player p) {
 		for (ArenaPlayer player : players) {
 			if (p.getUniqueId().equals(player.getBukkitPlayer().getUniqueId()))
@@ -119,7 +127,7 @@ public class ArenaGame {
 		return active;
 	}
 
-	private void start() {
+	public void start() {
 		active = true;
 		for (ArenaPlayer player : players) {
 			Player bukkitPlayer = player.getBukkitPlayer();
@@ -141,4 +149,10 @@ public class ArenaGame {
 //	
 //	start();
 	}
+	public ArrayList<ArenaPlayer> getPlayers() {
+		return players;
+	}
+
+
+
 }

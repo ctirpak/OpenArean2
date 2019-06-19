@@ -28,7 +28,7 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void playerMove(PlayerMoveEvent e) {
-		if (!plugin.getArenaGame().isGameActive()) {
+		if (!OpenArena.getCurrentArenaGame().isActive()) {
 			e.getPlayer().setFoodLevel(20);
 		}
 		// Location from = e.getFrom();
@@ -44,7 +44,7 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void playerInteract(PlayerInteractEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && plugin.getArenaGame().playerInArena(e.getPlayer())) { // Game isnt
+		if (!OpenArena.getCurrentArenaGame().isActive() && OpenArena.getCurrentArenaGame().playerInArena(e.getPlayer())) { // Game isnt
 																											// active
 																											// and
 																											// player is
@@ -71,15 +71,15 @@ public final class EventListener implements Listener {
 				e.getPlayer().getItemInHand().setItemMeta(itemMeta);
 
 				e.getPlayer().setItemInHand(ready);
-				plugin.getArenaGame().getArenaPlayer(e.getPlayer()).setReady(true);
+				OpenArena.getCurrentArenaGame().getArenaPlayer(e.getPlayer()).ready();
 
 				// see if everybody is ready
-				for (ArenaPlayer player : plugin.getArenaGame().getPlayers()) {
+				for (ArenaPlayer player : OpenArena.getCurrentArenaGame().getPlayers()) {
 					if (!player.isReady())
 						return;
 				}
 				Bukkit.broadcastMessage(ChatColor.GREEN + "Everybody is ready!");
-				plugin.getArenaGame().start();
+				OpenArena.getCurrentArenaGame().start();
 
 			} else if (item.equals(ready)) {
 				e.getPlayer().sendMessage(ChatColor.RED + "You are not ready!");
@@ -87,7 +87,7 @@ public final class EventListener implements Listener {
 				e.getPlayer().getItemInHand().setItemMeta(itemMeta);
 
 				e.getPlayer().setItemInHand(notReady);
-				plugin.getArenaGame().getArenaPlayer(e.getPlayer()).setReady(false);
+				OpenArena.getCurrentArenaGame().getArenaPlayer(e.getPlayer()).notReady();
 			} else if (itemMaterial.equals(itemMaterial.CHEST)) {
 				ArrayList<Kit> kits = plugin.getActiveKits();
 
@@ -100,8 +100,8 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && e.getInventory().getName().equalsIgnoreCase("Select a kit")
-				&& plugin.getArenaGame().playerInArena((Player) e.getWhoClicked())) {
+		if (!OpenArena.getCurrentArenaGame().isActive() && e.getInventory().getName().equalsIgnoreCase("Select a kit")
+				&& OpenArena.getCurrentArenaGame().playerInArena((Player) e.getWhoClicked())) {
 			Player player = (Player) e.getWhoClicked();
 			e.setCancelled(true);
 			if (!e.getCurrentItem().hasItemMeta()) {
@@ -117,7 +117,7 @@ public final class EventListener implements Listener {
 			if (kitNames.contains(kitName)) {
 				player.sendMessage(ChatColor.GREEN + "Your kit: " + kitName);
 
-				ArenaPlayer p = plugin.getArenaGame().getArenaPlayer(player);
+				ArenaPlayer p = OpenArena.getCurrentArenaGame().getArenaPlayer(player);
 				p.setKit(kitName);
 
 				player.setMetadata("kit", new FixedMetadataValue(plugin, kitName));
@@ -129,14 +129,14 @@ public final class EventListener implements Listener {
 
 	@EventHandler
 	public void takeDamage(EntityDamageEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && e.getEntity() instanceof Player
-				&& plugin.getArenaGame().playerInArena((Player) e.getEntity()))
+		if (!OpenArena.getCurrentArenaGame().isActive() && e.getEntity() instanceof Player
+				&& OpenArena.getCurrentArenaGame().playerInArena((Player) e.getEntity()))
 			e.setCancelled(true);
 	}
 
 	@EventHandler
 	public void dropItem(PlayerDropItemEvent e) {
-		if (!plugin.getArenaGame().isGameActive() && plugin.getArenaGame().playerInArena(e.getPlayer()))
+		if (!OpenArena.getCurrentArenaGame().isActive() && OpenArena.getCurrentArenaGame().playerInArena(e.getPlayer()))
 			e.setCancelled(true);
 	}
 }

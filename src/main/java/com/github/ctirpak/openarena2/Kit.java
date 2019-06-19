@@ -11,13 +11,62 @@ public class Kit {
 	private String name, description;
 	private HashMap<ItemStack, Integer> startingItems;
 
+	public Kit(Material repr, String name, String description) {
+		this.repr = repr;
+		this.name = name;
+		this.description = description;
+
+		this.startingItems = new HashMap<>();
+	}
+
 	// returns a formatted lore for the Kit Selector
 	public List<String> getLore() {
 		return null;
 	}
 
+	public Material getRepr() {
+		return repr;
+	}
+
+	public void setRepr(Material repr) {
+		this.repr = repr;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public HashMap<ItemStack, Integer> getStartingItems() {
+		return startingItems;
+	}
+
+	public void setStartingItems(HashMap<ItemStack, Integer> startingItems) {
+		this.startingItems = startingItems;
+	}
+
 	// loads Kit data from config
 	private void loadFromConfig() {
 
+	}
+
+	public void addStartingItem(Material m, int i) {
+		HashMap<ItemStack, Integer> hm = new HashMap<ItemStack, Integer>();
+		ItemStack item = new ItemStack(m);
+		
+		hm.put(item,i);
+		
+		this.setStartingItems(hm);
 	}
 }

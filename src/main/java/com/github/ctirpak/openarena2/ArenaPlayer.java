@@ -41,7 +41,8 @@ public class ArenaPlayer {
 	}
 
 	// sets the kit for this player
-	public void setKit() {
+	public void setKit(String kitName) {
+		this.kit = OpenArena.getKit(kitName);
 	}
 
 	public void ready() {
