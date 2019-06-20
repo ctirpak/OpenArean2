@@ -36,12 +36,12 @@ public final class LobbyEventListener implements Listener {
 		if (item.equals(notReady)) {
 			player.sendMessage("You are ready!");
 			arenaPlayer.ready();
-			player.getInventory().setItemInHand(ready);
+			player.getInventory().setItemInMainHand(ready);
 
 		} else if (item.equals(ready)) {
 			player.sendMessage("You are not ready!");
 			arenaPlayer.notReady();
-			player.getInventory().setItemInHand(notReady);
+			player.getInventory().setItemInMainHand(notReady);
 		}
 
 		e.setCancelled(true);

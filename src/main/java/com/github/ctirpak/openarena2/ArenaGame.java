@@ -105,7 +105,7 @@ public class ArenaGame {
 		players.add(new ArenaPlayer(bukkitPlayer));
 
 		bukkitPlayer.teleport(worldSpawn); // teleports the player to the new map.
-		bukkitPlayer.getInventory().setContents(plugin.lobbyMenu.getContents());
+		bukkitPlayer.getInventory().setContents(OpenArena.lobbyMenu.getContents());
 		plugin.log("A new player was added to the ArenaGame.");
 		return true;
 	}

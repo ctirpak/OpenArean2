@@ -6,17 +6,14 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.github.ctirpak.openarena2.generators.ChestGenerator;
@@ -57,8 +54,8 @@ public class OpenArena extends JavaPlugin {
 		Kit cultivist = new Kit(Material.WHEAT, "Cultivist", "Easily provide food for yourself and your team.");
 		Kit demolitionist =new Kit(Material.TNT, "Demolitionist", "Wreak havoc with explosives.");
 		Kit knight = new Kit(Material.SADDLE, "Knight", "Ride horses!");
-		Kit alchemist = new Kit(Material.BREWING_STAND_ITEM, "Alchemist", "Use your brewing stand to create powerful potions.");
-		Kit enchanter = new Kit(Material.ENCHANTMENT_TABLE, "Enchanter", "Enchant your items.");
+		Kit alchemist = new Kit(Material.BREWING_STAND, "Alchemist", "Use your brewing stand to create powerful potions.");
+		Kit enchanter = new Kit(Material.ENCHANTING_TABLE, "Enchanter", "Enchant your items.");
 		Kit spy = new Kit(Material.COMPASS, "Spy", "Your compass gives you more information about your foes.");
 		Kit berserker = new Kit(Material.POTION, "Berserker", "Killing mobs and players gives you extra strength.");
 
@@ -68,8 +65,8 @@ public class OpenArena extends JavaPlugin {
 		demolitionist.addStartingItem(Material.TNT, 16);
 		demolitionist.addStartingItem(Material.FLINT_AND_STEEL, 1);
 		knight.addStartingItem(Material.SADDLE, 1);
-		alchemist.addStartingItem(Material.BREWING_STAND_ITEM, 1);
-		enchanter.addStartingItem(Material.ENCHANTMENT_TABLE, 1);
+		alchemist.addStartingItem(Material.BREWING_STAND, 1);
+		enchanter.addStartingItem(Material.ENCHANTING_TABLE, 1);
 		
 		OpenArena.kits = new HashMap<String, Kit>();
 		OpenArena.kits.put(archer.getName(),archer);
@@ -126,12 +123,12 @@ public class OpenArena extends JavaPlugin {
 	public ItemStack[] getReadyItems() {
 		ItemStack[] readyItems = new ItemStack[2];
 
-		ItemStack notReady = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.RED.getData());
+		ItemStack notReady = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1); //red
 		ItemMeta notReadyMeta = notReady.getItemMeta();
 		notReadyMeta.setDisplayName("Not Ready");
 		notReady.setItemMeta(notReadyMeta);
 
-		ItemStack ready = new ItemStack(Material.STAINED_GLASS_PANE, 1, DyeColor.GREEN.getData());
+		ItemStack ready = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1); //green
 		ItemMeta readyMeta = ready.getItemMeta();
 		readyMeta.setDisplayName("Ready");
 		ready.setItemMeta(readyMeta);

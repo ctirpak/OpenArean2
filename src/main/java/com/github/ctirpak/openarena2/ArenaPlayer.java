@@ -1,8 +1,6 @@
 package com.github.ctirpak.openarena2;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 public class ArenaPlayer {
 	private Player bukkitPlayer;
