@@ -3,7 +3,10 @@ package com.github.ctirpak.openarena2;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,6 +29,7 @@ public class OpenArena extends JavaPlugin {
 	public static Inventory kitSelector;
 	public static Inventory lobbyMenu;
 	private static HashMap<String, Kit> kits;
+	private Inventory kitGUI;
 
 	@Override
 	public void onEnable() {
@@ -78,8 +82,10 @@ public class OpenArena extends JavaPlugin {
 		OpenArena.kits.put(spy.getName(),spy);
 		OpenArena.kits.put(berserker.getName(),berserker);
 
-		Inventory kitGUI = Bukkit.createInventory(null, 9, "Select a kit");
-		for (Kit kit : activeKits) {
+		Inventory kg = Bukkit.createInventory(null, 9, "Select a kit");
+		
+		for (Map.Entry<String, Kit> entry : kits.entrySet()) {
+			Kit kit = entry.getValue();
 			ItemStack kitItem = new ItemStack(kit.getRepr(), 1);
 			ItemMeta kitItemMeta = kitItem.getItemMeta();
 
@@ -91,8 +97,9 @@ public class OpenArena extends JavaPlugin {
 			kitItemMeta.setLore(lore);
 
 			kitItem.setItemMeta(kitItemMeta);
-			kitGUI.addItem(kitItem);
+			kg.addItem(kitItem);
 		}
+		this.setKitGUI(kg);
 	}
 
 	// generates the Inventory GUI for the players in the lobby
@@ -157,5 +164,13 @@ public class OpenArena extends JavaPlugin {
 		Kit k = OpenArena.kits.get(kitName);
 		return k;
 		
+	}
+
+	public Inventory getKitGUI() {
+		return kitGUI;
+	}
+
+	public void setKitGUI(Inventory kitGUI) {
+		this.kitGUI = kitGUI;
 	}
 }

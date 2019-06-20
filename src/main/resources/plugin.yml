@@ -1,8 +1,0 @@
-name: OpenArena
-main: com.github.ctirpak.openarena2.OpenArena
-version: 0.0.1-SNAPSHOT
-
-commands:
-  oa:
-    description: OpenArena
-    usage: /<command> <params>
