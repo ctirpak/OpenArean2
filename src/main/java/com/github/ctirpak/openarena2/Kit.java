@@ -21,7 +21,7 @@ public class Kit {
 		this.name = name;
 		this.description = description;
 
-		this.startingItems = new HashMap<>();
+		this.startingItems = new HashMap<ItemStack, Integer>();
 	}
 
 	// returns a formatted lore for the Kit Selector

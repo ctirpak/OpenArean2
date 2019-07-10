@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -46,12 +47,12 @@ public final class EventListener implements Listener {
 		if (!OpenArena.getCurrentArenaGame().isActive()
 				&& OpenArena.getCurrentArenaGame().playerInArena(e.getPlayer())) { 
 			// Game isnt active and player is in the arena game
-			ItemStack notReady = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1); // red
+			ItemStack notReady = new ItemStack(Material.STAINED_GLASS_PANE, 1); // red
 			ItemMeta notReadyMeta = notReady.getItemMeta();
 			notReadyMeta.setDisplayName("Not Ready");
 			notReady.setItemMeta(notReadyMeta);
 
-			ItemStack ready = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1); // green
+			ItemStack ready = new ItemStack(Material.STAINED_GLASS_PANE, 1); // green
 			ItemMeta readyMeta = ready.getItemMeta();
 			readyMeta.setDisplayName("Ready");
 			ready.setItemMeta(readyMeta);
@@ -83,7 +84,7 @@ public final class EventListener implements Listener {
 
 				e.getPlayer().getInventory().setItemInMainHand(notReady);
 				OpenArena.getCurrentArenaGame().getArenaPlayer(e.getPlayer()).notReady();
-			} else if (itemMaterial.equals(itemMaterial.CHEST)) {
+			} else if (itemMaterial.equals(Material.CHEST)) {
 				ArrayList<Kit> kits = plugin.getActiveKits();
 
 				e.getPlayer().openInventory(plugin.getKitGUI());

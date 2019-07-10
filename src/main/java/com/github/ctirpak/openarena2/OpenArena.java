@@ -21,11 +21,11 @@ import com.github.ctirpak.openarena2.listeners.LobbyEventListener;
 
 public class OpenArena extends JavaPlugin {
 	private static ArenaGame ag;
-	private ChestGenerator cg;
-	private Logger logger;
+	private static HashMap<String, Kit> kits;
 	public static Inventory kitSelector;
 	public static Inventory lobbyMenu;
-	private static HashMap<String, Kit> kits;
+	private ChestGenerator cg;
+	private Logger logger;
 	private Inventory kitGUI;
 
 	@Override
@@ -55,7 +55,7 @@ public class OpenArena extends JavaPlugin {
 		Kit demolitionist =new Kit(Material.TNT, "Demolitionist", "Wreak havoc with explosives.");
 		Kit knight = new Kit(Material.SADDLE, "Knight", "Ride horses!");
 		Kit alchemist = new Kit(Material.BREWING_STAND, "Alchemist", "Use your brewing stand to create powerful potions.");
-		Kit enchanter = new Kit(Material.ENCHANTING_TABLE, "Enchanter", "Enchant your items.");
+		Kit enchanter = new Kit(Material.ENCHANTMENT_TABLE, "Enchanter", "Enchant your items.");
 		Kit spy = new Kit(Material.COMPASS, "Spy", "Your compass gives you more information about your foes.");
 		Kit berserker = new Kit(Material.POTION, "Berserker", "Killing mobs and players gives you extra strength.");
 
@@ -66,7 +66,7 @@ public class OpenArena extends JavaPlugin {
 		demolitionist.addStartingItem(Material.FLINT_AND_STEEL, 1);
 		knight.addStartingItem(Material.SADDLE, 1);
 		alchemist.addStartingItem(Material.BREWING_STAND, 1);
-		enchanter.addStartingItem(Material.ENCHANTING_TABLE, 1);
+		enchanter.addStartingItem(Material.ENCHANTMENT_TABLE, 1);
 		
 		OpenArena.kits = new HashMap<String, Kit>();
 		OpenArena.kits.put(archer.getName(),archer);
@@ -123,12 +123,12 @@ public class OpenArena extends JavaPlugin {
 	public ItemStack[] getReadyItems() {
 		ItemStack[] readyItems = new ItemStack[2];
 
-		ItemStack notReady = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1); //red
+		ItemStack notReady = new ItemStack(Material.STAINED_GLASS_PANE, 1); //red
 		ItemMeta notReadyMeta = notReady.getItemMeta();
 		notReadyMeta.setDisplayName("Not Ready");
 		notReady.setItemMeta(notReadyMeta);
 
-		ItemStack ready = new ItemStack(Material.GREEN_STAINED_GLASS_PANE, 1); //green
+		ItemStack ready = new ItemStack(Material.STAINED_GLASS_PANE, 1); //green
 		ItemMeta readyMeta = ready.getItemMeta();
 		readyMeta.setDisplayName("Ready");
 		ready.setItemMeta(readyMeta);
