@@ -1,8 +1,6 @@
 package com.github.ctirpak.openarena2;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 public class ArenaPlayer {
 	private Player bukkitPlayer;
@@ -41,7 +39,8 @@ public class ArenaPlayer {
 	}
 
 	// sets the kit for this player
-	public void setKit() {
+	public void setKit(String kitName) {
+		this.kit = OpenArena.getKit(kitName);
 	}
 
 	public void ready() {

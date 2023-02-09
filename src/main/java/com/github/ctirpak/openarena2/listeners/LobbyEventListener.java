@@ -16,7 +16,7 @@ public final class LobbyEventListener implements Listener {
 
 	public LobbyEventListener(OpenArena plugin) {
 		this.plugin = plugin;
-		ag = plugin.getCurrentArenaGame();
+		ag = OpenArena.getCurrentArenaGame();
 		plugin.getServer().getPluginManager().registerEvents(this, plugin);
 	}
 
@@ -24,7 +24,8 @@ public final class LobbyEventListener implements Listener {
 	public void LobbyItemInteract(PlayerInteractEvent e) {
 		Player player = e.getPlayer();
 		if (ag.isActive() || ag.hasPlayer(player) == -1)
-			return; // the game is either not in lobby phase or the player is not in the game
+			// the game is either not in lobby phase or the player is not in the game
+			return;
 
 		ArenaPlayer arenaPlayer = ag.getArenaPlayer(player);
 		ItemStack notReady = plugin.getReadyItems()[0];
@@ -35,12 +36,12 @@ public final class LobbyEventListener implements Listener {
 		if (item.equals(notReady)) {
 			player.sendMessage("You are ready!");
 			arenaPlayer.ready();
-			player.getInventory().setItemInHand(ready);
+			player.getInventory().setItemInMainHand(ready);
 
 		} else if (item.equals(ready)) {
 			player.sendMessage("You are not ready!");
 			arenaPlayer.notReady();
-			player.getInventory().setItemInHand(notReady);
+			player.getInventory().setItemInMainHand(notReady);
 		}
 
 		e.setCancelled(true);

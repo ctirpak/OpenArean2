@@ -27,7 +27,8 @@ public class ArenaGame {
 	// Creates a new temporary world and returns the name.
 	private String generateWorld() {
 		String name = "arena";
-		while (new File(plugin.getServer().getWorldContainer(), name).exists()) { // finds a name for the new world.
+		// finds a name for the new world.
+		while (new File(plugin.getServer().getWorldContainer(), name).exists()) {
 			name += "_";
 		}
 
@@ -49,6 +50,14 @@ public class ArenaGame {
 				return players.indexOf(player);
 		}
 		return -1;
+	}
+
+	public boolean playerInArena(Player p) {
+		for (ArenaPlayer player : players) {
+			if (p.getUniqueId().equals(player.getBukkitPlayer().getUniqueId()))
+				return true;
+		}
+		return false;
 	}
 
 	public ArenaPlayer getArenaPlayer(Player p) {
@@ -96,7 +105,7 @@ public class ArenaGame {
 		players.add(new ArenaPlayer(bukkitPlayer));
 
 		bukkitPlayer.teleport(worldSpawn); // teleports the player to the new map.
-		bukkitPlayer.getInventory().setContents(plugin.lobbyMenu.getContents());
+		bukkitPlayer.getInventory().setContents(OpenArena.lobbyMenu.getContents());
 		plugin.log("A new player was added to the ArenaGame.");
 		return true;
 	}
@@ -118,7 +127,7 @@ public class ArenaGame {
 		return active;
 	}
 
-	private void start() {
+	public void start() {
 		active = true;
 		for (ArenaPlayer player : players) {
 			Player bukkitPlayer = player.getBukkitPlayer();
@@ -140,4 +149,10 @@ public class ArenaGame {
 //	
 //	start();
 	}
+	public ArrayList<ArenaPlayer> getPlayers() {
+		return players;
+	}
+
+
+
 }
