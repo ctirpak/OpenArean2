@@ -19,7 +19,8 @@ public class OpenArena extends JavaPlugin {
 	private static ArenaGame ag;
 	private ChestGenerator cg;
 	private Logger logger;
-	public static Inventory kitSelector, lobbyMenu;
+	public static Inventory kitSelector;
+	public static Inventory lobbyMenu;
 	private HashMap<String, Kit> kits;
 
 	@Override
@@ -27,10 +28,11 @@ public class OpenArena extends JavaPlugin {
 		this.getCommand("oa").setExecutor(new OACommandExecutor(this));
 		new LobbyEventListener(this);
 
-		logger = new Logger(ChatColor.YELLOW, "OpenArena > ");
 		ag = new ArenaGame(this);
+		cg = new ChestGenerator(this);
+		logger = new Logger(ChatColor.YELLOW, "OpenArena > ");
 
-		this.lobbyMenu = generateLobbyMenu();
+		lobbyMenu = generateLobbyMenu();
 	}
 
 	@Override
